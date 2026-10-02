@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+.container {
+    width: min(900px, 92%);
+    margin: 40px auto;
+    padding: 28px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.task-controls {
+    margin-bottom: 24px;
+}
+
+.task-controls label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.input-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+#taskInput {
+    flex: 1 1 250px;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#addTaskBtn,
+#loadSamplesBtn {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+button:hover {
+    opacity: 0.88;
+}
+
+.message {
+    min-height: 20px;
+    margin: 8px 0 0;
+    color: #b91c1c;
+}
+
+#taskList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #dbe3ed;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.task-text {
+    flex: 1 1 250px;
+    overflow-wrap: anywhere;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.complete-btn {
+    background: #16a34a;
+    color: #ffffff;
+}
+
+.edit-btn {
+    background: #f59e0b;
+    color: #ffffff;
+}
+
+.remove-btn {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.edit-input {
+    flex: 1 1 250px;
+    padding: 9px 10px;
+    border: 1px solid #94a3b8;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.summary {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.summary > div {
+    flex: 1;
+    padding: 14px;
+    text-align: center;
+    border: 1px solid #dbe3ed;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.summary span,
+.summary strong {
+    display: block;
+}
+
+.summary span {
+    margin-bottom: 6px;
+    color: #64748b;
+}
+
+.summary strong {
+    font-size: 1.4rem;
+}
