@@ -47,9 +47,9 @@ function generateUniqueTaskId() {
     let taskId;
 
     do {
-        taskId = "task-" + taskIdCounter;
+        taskId = `task-${taskIdCounter}`;
         taskIdCounter += 1;
-    } while (taskList.querySelector('[data-task-id="' + taskId + '"]'));
+    } while (taskList.querySelector(`[data-task-id="${taskId}"]`));
 
     return taskId;
 }
@@ -117,6 +117,7 @@ function saveTaskEdit(taskItem) {
     editInput.replaceWith(taskTextSpan);
     editButton.textContent = "Edit";
     taskMessage.textContent = "";
+    updateTaskCounts();
 }
 
 function removeTask(taskItem) {
@@ -130,7 +131,7 @@ function updateTaskCounts() {
     let pending = 0;
     let completed = 0;
 
-    taskItems.forEach(function (taskItem) {
+    taskItems.forEach((taskItem) => {
         if (taskItem.dataset.state === "completed") {
             completed += 1;
         } else if (taskItem.dataset.state === "pending") {
@@ -144,21 +145,31 @@ function updateTaskCounts() {
 }
 
 function handleTaskListClick(event) {
-    const taskItem = event.target.closest(".task-item");
+    const clickedButton = event.target;
+
+    if (
+        !clickedButton.classList.contains("complete-btn") &&
+        !clickedButton.classList.contains("edit-btn") &&
+        !clickedButton.classList.contains("remove-btn")
+    ) {
+        return;
+    }
+
+    const taskItem = clickedButton.closest(".task-item");
 
     if (!taskItem) {
         return;
     }
 
-    if (event.target.matches(".complete-btn")) {
+    if (clickedButton.classList.contains("complete-btn")) {
         toggleTaskComplete(taskItem);
-    } else if (event.target.matches(".edit-btn")) {
-        if (taskItem.querySelector(".edit-input")) {
+    } else if (clickedButton.classList.contains("edit-btn")) {
+        if (clickedButton.textContent === "Save") {
             saveTaskEdit(taskItem);
         } else {
             beginTaskEdit(taskItem);
         }
-    } else if (event.target.matches(".remove-btn")) {
+    } else if (clickedButton.classList.contains("remove-btn")) {
         removeTask(taskItem);
     }
 }
@@ -172,7 +183,7 @@ function loadSampleTasks() {
 
     const fragment = document.createDocumentFragment();
 
-    sampleTasks.forEach(function (sampleTask) {
+    sampleTasks.forEach((sampleTask) => {
         const taskId = generateUniqueTaskId();
         const taskItem = createTaskElement(sampleTask, taskId);
         fragment.appendChild(taskItem);
@@ -183,13 +194,13 @@ function loadSampleTasks() {
     updateTaskCounts();
 }
 
-addTaskBtn.addEventListener("click", function () {
+addTaskBtn.addEventListener("click", () => {
     addTask(taskInput.value);
 });
 
 loadSamplesBtn.addEventListener("click", loadSampleTasks);
 
-taskInput.addEventListener("keydown", function (event) {
+taskInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         addTask(taskInput.value);
     }
